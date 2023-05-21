@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import css from './Searchbar.module.css'
 
-export class Searchbar extends Component {
-  state = {
-    valueSearch: '',
-  };
 
-handleInputChange = e => {
-   this.setState({ valueSearch: e.currentTarget.value.toLowerCase() });
+
+export const Searchbar = ({ functionCurrentValueSearch }) => {
+  const [valueSearch, setValueSearch] = useState('');
+
+  const handleInputChange = e => {
+  setValueSearch(e.currentTarget.value.toLowerCase())
+  //  this.setState({ valueSearch: e.currentTarget.value.toLowerCase() });
     };
     
-handleSubmit = evt => {
+const handleSubmit = evt => {
     evt.preventDefault();
 
-    if (this.state.valueSearch.trim() === '') {
+    if (valueSearch.trim() === '') {
         alert('Введіть назву для пошуку');
         return;
     }
-    this.props.functionCurrentValueSearch(this.state.valueSearch);
-    this.setState({ valueSearch: '' })
+  functionCurrentValueSearch(valueSearch);
+  setValueSearch('')
+    // this.setState({ valueSearch: '' })
    
     };
 
-  render() {
-    return (
-      <header className={css.searchbar}>
-        <form className={css.form} onSubmit={this.handleSubmit}>
+  return (
+    <header className={css.searchbar}>
+        <form className={css.form} onSubmit={handleSubmit}>
           <button type="submit" className={css.searchForm_button} >
             <span className={css.searchForm_button_label}>Search</span>
           </button>
@@ -36,11 +37,12 @@ handleSubmit = evt => {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.valueSearch}
-            onChange={this.handleInputChange}
+            value={valueSearch}
+            onChange={handleInputChange}
           />
         </form>
       </header>
-    );
-  }
+  );
 }
+
+
