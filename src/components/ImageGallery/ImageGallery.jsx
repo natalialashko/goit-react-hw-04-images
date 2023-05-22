@@ -56,7 +56,7 @@ export const ImageGallery = ({ currentValueSearch }) => {
           setImages([]) 
         })
     setPrevValueSearch(currentValueSearch)
-  }, [currentValueSearch, currentPage]);
+  }, [currentValueSearch, currentPage, prevValueSearch]);
 
 
 
