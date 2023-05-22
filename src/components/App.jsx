@@ -15,7 +15,7 @@ export const App = () => {
   return (
       <div className={css.app}>
         <Searchbar functionCurrentValueSearch={handleFormSubmit} />
-        <ImageGallery currentValueSearch={currentValueSearch} />
+      <ImageGallery currentValueSearch={currentValueSearch} />
        
       </div>
   );
